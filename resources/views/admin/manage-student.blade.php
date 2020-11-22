@@ -111,12 +111,12 @@
                                                 @if ($student->status == 1)
                                                 <span class="badge badge-primary">Active</span>
                                                 @else
-                                                <span class="badge badge-danger">Inactive</span>
+                                                <span class="badge badge-warning">Inactive</span>
                                                 @endif
                                             </td>
                                             <td>
                                                 @if ($student->status == 1)
-                                                <a class="btn btn-secondary"
+                                                <a class="btn btn-warning"
                                                     href="{{ route('admin.blockStudent', ['id' => $student->id]) }}">Inactive</a>
                                                 @else
                                                 <a class="btn btn-primary"
@@ -126,16 +126,6 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Student Name</th>
-                                            <th rowspan="1" colspan="1">Email</th>
-                                            <th rowspan="1" colspan="1">Reg Date</th>
-                                            <th rowspan="1" colspan="1">Status</th>
-                                            <th rowspan="1" colspan="1">Action</th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                         </div>

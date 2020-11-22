@@ -63,6 +63,7 @@
                         <div class="form-group">
                             <label for="">Author</label>
                             <select class="form-control" name="author_id" id="">
+                                <option value="">-- Chọn tác giả --</option>
                                 @foreach ($authors as $author)
                                 <option value="{{ $author->id }}">{{ $author->name }}</option>
                                 @endforeach
@@ -71,6 +72,7 @@
                         <div class="form-group">
                             <label for="">Category</label>
                             <select class="form-control select2" name="category_id[]" id="" multiple required>
+                                <option value="">-- Chọn danh mục --</option>
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach

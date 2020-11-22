@@ -32,8 +32,8 @@ class AdminController extends Controller
             $email = $request->get('email');
             $password = $request->get('password');
             if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password])) {
-                $id = Auth::guard('admin')->id();
-                return redirect()->route('admin.dashboard', ['id' => $id]);
+                // $id = Auth::guard('admin')->id();
+                return redirect()->route('admin.dashboard');
             }
             $errors = new MessageBag(['password' => ['Email hoặc mật khẩu không chính xác']]);
             return redirect()->back()->withErrors($errors)->withInput();
@@ -84,7 +84,7 @@ class AdminController extends Controller
         return redirect()->route('index');
     }
 
-    public function dashboard($id)
+    public function dashboard()
     {
         $totalBook = DB::table('books')->select('id')->count();
         $bookLoan = DB::table('book_loan')->select('id')->count();
@@ -119,23 +119,25 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function changePassword($id)
+    public function changePassword()
     {
-        // $id = Auth::guard('admin')->id();
-        return view('admin.change-password', compact('id'));
+        return view('admin.change-password');
     }
 
-    public function updatePassword(Request $request, $id)
+    public function updatePassword(Request $request)
     {
+        $id = Auth::guard('admin')->id();
         $pass = $request->get('password');
         $newPass = $request->get('new_password');
         $hashPass = bcrypt($newPass);
         $rePass = $request->get('re_password');
         $oldPass = Admin::where('id', $id)->first()->password;
-        dd($oldPass);
+        // dd($oldPass);
         if (Hash::check($pass, $oldPass)) {
             if ($newPass == $rePass) {
-                Admin::where('id', $id)->update(['password' => $hashPass]);
+                $admin = Admin::find($id);
+                $admin->password = $hashPass;
+                $admin->save();
                 $request->session()->flash('status', 'Thay đổi mật khẩu thành công');
                 return redirect()->route('admin.changePassword');
             } else {

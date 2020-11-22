@@ -99,7 +99,7 @@
                                             <th>Amount of fine</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1" aria-label="Platform(s): activate to sort column ascending">
-                                                Action</th>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -111,28 +111,22 @@
                                             <td>{{ $bookLoan->date_issued }}</td>
                                             <td>{{ $bookLoan->date_due_for_return }}</td>
                                             <td>{{ $bookLoan->date_returned }}</td>
-                                            <td>{{ $bookLoan->status == 1 ? 'Returned' : 'Not Return Yet' }}</td>
+                                            <td>
+                                                @if ($bookLoan->status == 0)
+                                                <span class="badge badge-warning"> Not return yet</span>
+                                                @else
+                                                <span class="badge badge-primary"> Returned</span>
+                                                @endif
+                                            </td>
                                             <td>{{ $bookLoan->amount_of_fine }}</td>
                                             <td>
                                                 <a class="btn btn-primary"
-                                                    href="{{ route('admin.editBookLoan', ['id' => $bookLoan->id]) }}">Edit</a>
+                                                    href="{{ route('admin.editBookLoan', ['id' => $bookLoan->id]) }}"><i
+                                                        class="fas fa-edit"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Student Name</th>
-                                            <th rowspan="1" colspan="1">Book Name</th>
-                                            <th rowspan="1" colspan="1">Date issued</th>
-                                            <th rowspan="1" colspan="1">Date due for return</th>
-                                            <th>Date returned</th>
-                                            <th>Status</th>
-                                            <th>Amount of fine</th>
-                                            <th rowspan="1" colspan="1">Action</th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                         </div>

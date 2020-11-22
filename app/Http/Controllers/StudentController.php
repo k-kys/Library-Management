@@ -7,6 +7,7 @@ use App\Models\Student;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\MessageBag;
 use Validator;
 
@@ -34,8 +35,8 @@ class StudentController extends Controller
                 $status = Student::select('status')->where('email', $email)->first()->status;
                 // dd($status);
                 if ($status == 1) {
-                    $id = Auth::guard('students')->id();
-                    return redirect()->route('dashboard', ['id' => $id]);
+                    // $id = Auth::guard('students')->id();
+                    return redirect()->route('dashboard');
                 } else {
                     $request->session()->flash('status', 'Tài khoản của bạn đã bị khóa. Liên hệ Admin để được hỗ trợ');
                     Auth::guard('students')->logout();
@@ -113,9 +114,9 @@ class StudentController extends Controller
         return redirect()->route('index');
     }
 
-    public function dashboard($id)
+    public function dashboard()
     {
-
+        $id = Auth::guard('students')->id();
         $bookLoan = BookLoan::select('id')->where('student_id', $id)->count();
         $bookNotReturn = BookLoan::select('id')->where([
             ['student_id', '=', $id],
@@ -128,14 +129,16 @@ class StudentController extends Controller
         return view('dashboard', compact('bookLoan', 'bookNotReturn', 'bookReturned'));
     }
 
-    public function profile($id)
+    public function profile()
     {
+        $id = Auth::guard('students')->id();
         $profile = Student::find($id);
         return view('profile', compact('profile'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id = Auth::guard('students')->id();
         $student = Student::find($id);
         $student->name = $request->name;
         $student->updated_at = date('Y-m-d H:i:s');
@@ -144,24 +147,27 @@ class StudentController extends Controller
         return redirect()->route('profile', ['id' => $id]);
     }
 
-    public function changePassword($id)
+    public function changePassword()
     {
-        return view('change-password', compact('id'));
+        return view('change-password');
     }
 
-    public function updatePassword(Request $request, $id)
+    public function updatePassword(Request $request)
     {
         $pass = $request->get('password');
         $newPass = $request->get('new_password');
         $hashPass = bcrypt($newPass);
         $rePass = $request->get('re_password');
-        $oldPass = Student::select('password')->where('id', $id)->get();
-        if ($pass === $oldPass) {
+        $id = Auth::guard('students')->id();
+        $oldPass = Student::select('password')->where('id', $id)->first()->password;
+        // dd($oldPass);
+        if (Hash::check($pass, $oldPass)) {
             if ($newPass === $rePass) {
                 $student = Student::find($id);
                 $student->password = $hashPass;
+                $student->save();
                 $request->session()->flash('status', 'Thay đổi mật khẩu thành công');
-                return redirect()->route('changePassword', ['id' => $id]);
+                return redirect()->route('changePassword');
             } else {
                 $errors[] = 'Nhập lại Mật khẩu Mới chưa chính xác';
                 return redirect()->back()->withErrors($errors);
@@ -172,10 +178,10 @@ class StudentController extends Controller
         }
     }
 
-    public function bookLoan($id)
+    public function bookLoan()
     {
-        $bookLoans = DB::table('book_loan')->join('students', 'book_loan.student_id', '=', 'students.id')->join('books', 'book_loan.book_id', '=', 'books.id')->where('student_id', $id)->orderByDesc('id')->addSelect('book_loan.id', 'books.name', 'book_loan.date_issued', 'book_loan.date_due_for_return', 'book_loan.date_returned', 'book_loan.status', 'book_loan.amount_of_fine');
-        // $bookLoans =  DB::raw('SELECT book_loan.id, books.name, book_loan.date_issued, book_loan.date_due_for_return, book_loan.date_returned, book_loan.status, book_loan.amount_of_fine FROM book_loan JOIN students on book_loan.student_id=students.id JOIN books on book_loan.book_id=books.id WHERE book_loan.student_id=2 ORDER BY book_loan.id DESC');
+        $id = Auth::guard('students')->id();
+        $bookLoans = DB::table('book_loan')->select('book_loan.id', 'books.name', 'book_loan.date_issued', 'book_loan.date_due_for_return', 'book_loan.date_returned', 'book_loan.status', 'book_loan.amount_of_fine')->join('students', 'book_loan.student_id', '=', 'students.id')->join('books', 'book_loan.book_id', '=', 'books.id')->where('student_id', $id)->orderByDesc('book_loan.id')->get();
 
         return view('book-borrowed', compact('bookLoans'));
     }

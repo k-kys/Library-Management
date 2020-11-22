@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h4>Student Change Password</h4>
+            <h2>CHANGE PASSWORD</h2>
         </div>
     </div>
 
@@ -33,10 +33,10 @@
 
     <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-            <form action="{{ route('updatePassword',['id' => $id]) }}" method="POST" role="form">
+            <form action="{{ route('updatePassword') }}" method="POST" role="form">
                 @method('PUT')
                 @csrf
-                <legend>Change password</legend>
+                {{-- <legend>Change password</legend> --}}
 
                 <div class="form-group">
                     <label for="">Current Password</label>

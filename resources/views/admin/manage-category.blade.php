@@ -104,14 +104,16 @@
                                             <td>{{ $category->updated_at }}</td>
                                             <td>
                                                 <a class="btn btn-primary"
-                                                    href="{{ route('admin.editCategory', ['id' => $category->id]) }}">Edit</a>
+                                                    href="{{ route('admin.editCategory', ['id' => $category->id]) }}"><i
+                                                        class="fas fa-edit"></i></a>
                                                 &nbsp;
                                                 <form
                                                     action="{{ route('admin.deleteCategory', ['id' => $category->id]) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-delete btn-secondary">Delete</button>
+                                                    <button class="btn btn-delete btn-warning"><i class="fa fa-trash"
+                                                            aria-hidden="true"></i></button>
                                                 </form>
                                                 {{-- <a class="btn btn-secondary"
                                                     href="">Delete</a> --}}
@@ -119,15 +121,6 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Category name</th>
-                                            <th rowspan="1" colspan="1">Created_at</th>
-                                            <th rowspan="1" colspan="1">Updated_at</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                         </div>

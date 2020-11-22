@@ -104,7 +104,7 @@
                                                 Updated_at</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1" aria-label="Platform(s): activate to sort column ascending">
-                                                Action</th>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -123,30 +123,20 @@
                                             <td>{{ $book->updated_at }}</td>
                                             <td>
                                                 <a class="btn btn-primary"
-                                                    href="{{ route('admin.editBook', ['id' => $book->id]) }}">Edit</a>
+                                                    href="{{ route('admin.editBook', ['id' => $book->id]) }}"><i
+                                                        class="fas fa-edit"></i></a>
                                                 &nbsp;
                                                 <form action="{{ route('admin.deleteBook', ['id' => $book->id]) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-delete btn-secondary">Delete</button>
+                                                    <button class="btn btn-delete btn-warning"><i class="fa fa-trash"
+                                                            aria-hidden="true"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Book name</th>
-                                            <th rowspan="1" colspan="1">Author</th>
-                                            <th rowspan="1" colspan="1">Category</th>
-                                            <th rowspan="1" colspan="1">Price</th>
-                                            <th>Created_at</th>
-                                            <th>Updated_at</th>
-                                            <th rowspan="1" colspan="1">Action</th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                         </div>

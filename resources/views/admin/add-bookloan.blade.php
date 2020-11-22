@@ -60,6 +60,7 @@
                             <label for="">Student Name</label>
                             {{-- <input type="text" class="form-control" name="name" id="" placeholder="Enter Book name"> --}}
                             <select name="student_id" id="input" class="form-control">
+                                <option value="">-- Chọn sinh viên --</option>
                                 @foreach ($students as $student)
                                 <option value="{{ $student->id }}">{{ $student->name }}</option>
                                 @endforeach
@@ -69,6 +70,7 @@
                             <label for="">Book Name</label>
                             {{-- <input type="text" class="form-control" name="" id="author" placeholder="Author"> --}}
                             <select name="book_id" id="input" class="form-control">
+                                <option value="">-- Chọn sách --</option>
                                 @foreach ($books as $book)
                                 <option value="{{ $book->id }}">{{ $book->name }}</option>
                                 @endforeach

@@ -46,14 +46,14 @@
     </div>
 
     <div class="row justify-content-center">
-        <div class="row col-md-5">
+        <div class="col-md-5">
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Change Password</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ route('admin.updatePassword', ['id' => $id]) }}" method="POST" role="form">
+                <form action="{{ route('admin.updatePassword') }}" method="POST" role="form">
                     @method('PUT')
                     @csrf
                     <div class="card-body">

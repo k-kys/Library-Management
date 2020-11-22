@@ -84,7 +84,7 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed" style="height: auto;">
+<body class="hold-transition sidebar-mini layout-fixed " style="height: auto;">
 
 
     <div class="wrapper">

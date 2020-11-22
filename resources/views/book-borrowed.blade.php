@@ -1,11 +1,11 @@
 @extends('master')
-@section('title', 'Issued Book')
+@section('title', 'Book borrow')
 @section('content')
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h4>Manager Book Borrowed</h4>
+            <h2>BOOK BORROWED</h2>
         </div>
     </div>
     <div class="row">
@@ -32,26 +32,15 @@
                         <td>{{ $bookLoan->date_returned }}</td>
                         <td>
                             @if ($bookLoan->status == 0)
-                            <span style="color: red;"> Not return yet</span>
+                            <span class="badge badge-warning"> Not return yet</span>
                             @else
-                            <span style="color: blue;"> Returned</span>
+                            <span class="badge badge-primary"> Returned</span>
                             @endif
                         </td>
                         <td>{{ $bookLoan->amount_of_fine }}</td>
                     </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>ID</th>
-                        <th>Book Name</th>
-                        <th>Date issued</th>
-                        <th>Date due for return</th>
-                        <th>Date returned</th>
-                        <th>Status</th>
-                        <th>Amount of fine</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

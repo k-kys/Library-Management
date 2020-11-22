@@ -25,13 +25,13 @@ Route::get('/', function () {
 Route::post('/login', [StudentController::class, 'login'])->name('login');
 Route::post('/register', [StudentController::class, 'register'])->name('register');
 Route::get('/logout', [StudentController::class, 'logout'])->name('logout');
-Route::get('/dashboard/{id}', [StudentController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/profile/{id}', [StudentController::class, 'profile'])->name('profile');
-Route::put('/profile/{id}', [StudentController::class, 'update'])->name('update');
-Route::get('/change-password/{id}', [StudentController::class, 'changePassword'])->name('changePassword');
-Route::put('/update-password/{id}', [StudentController::class, 'updatePassword'])->name('updatePassword');
-Route::get('/book-borrowed/{id}', [StudentController::class, 'bookLoan'])->name('book-borrowed');
+Route::get('/profile', [StudentController::class, 'profile'])->name('profile');
+Route::put('/update-profile', [StudentController::class, 'update'])->name('update');
+Route::get('/change-password', [StudentController::class, 'changePassword'])->name('changePassword');
+Route::put('/update-password', [StudentController::class, 'updatePassword'])->name('updatePassword');
+Route::get('/book-borrowed', [StudentController::class, 'bookLoan'])->name('book-borrowed');
 Route::view('/forgot-password', 'forgot-password')->name('forgot-password');
 Route::post('/forgot-password', [StudentController::class, 'forgotPassword'])->name('forgotPassword');
 
@@ -43,9 +43,9 @@ Route::post('/admin-login', [AdminController::class, 'login'])->name('admin.logi
 
 Route::prefix('admin')->group(function () {
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
-    Route::get('dashboard/{id}', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('change-password/{id}', [AdminController::class, 'changePassword'])->name('admin.changePassword');
-    Route::put('update-password/{id}', [AdminController::class, 'updatePassword'])->name('admin.updatePassword');
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('change-password', [AdminController::class, 'changePassword'])->name('admin.changePassword');
+    Route::put('update-password', [AdminController::class, 'updatePassword'])->name('admin.updatePassword');
     // Author
     Route::get('add-author', [AuthorController::class, 'addAuthor'])->name('admin.addAuthor');
     Route::post('store-author', [AuthorController::class, 'storeAuthor'])->name('admin.storeAuthor');

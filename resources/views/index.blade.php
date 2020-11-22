@@ -38,6 +38,7 @@
             <div class="login-box">
                 <div class="card">
                     <div class="card-body login-card-body">
+                        <legend class="" style="text-align: center">Login</legend>
                         <p class="login-box-msg">Sign in to start your session</p>
 
                         <form action="{{ route('login') }}" method="post">

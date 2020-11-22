@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row pad-botm">
         <div class="col-md-12">
-            <h4>STUDENT DASHBOARD</h4>
+            <h2>STUDENT DASHBOARD</h2>
         </div>
     </div>
     <div class="row">

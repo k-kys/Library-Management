@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h4>My Profile</h4>
+            <h2>MY PROFILE</h2>
         </div>
     </div>
     {{-- Kiem tra loi - validate --}}
@@ -36,7 +36,7 @@
             <form action="{{ route('update', ['id' => $profile->id]) }}" method="POST" role="form">
                 @csrf
                 @method('PUT')
-                {{-- <legend>Form title</legend> --}}
+                {{-- <legend>My Profile</legend> --}}
 
                 <div class="form-group">
                     <label for="">Student ID: </label> {{ $profile->id }}
