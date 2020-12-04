@@ -20,6 +20,16 @@
 </div>
 @endsection
 
+@section('js')
+<script>
+    document.getElementById('books').className += ' menu-open';
+    document.getElementById('books_link').className += ' active';
+    document.getElementById('add_book_link').className += ' active';
+    document.getElementById('add_book_icon').className = 'far fa-dot-circle nav-icon';
+</script>
+@endsection
+
+
 @section('content')
 <div class="container-fluid">
 
@@ -81,6 +91,10 @@
                         <div class="form-group">
                             <label for="">Price</label>
                             <input type="number" class="form-control" name="price" id="" placeholder="Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Quantity</label>
+                            <input type="number" class="form-control" name="quantity" id="" placeholder="Quantity">
                         </div>
                     </div>
                     <!-- /.card-body -->

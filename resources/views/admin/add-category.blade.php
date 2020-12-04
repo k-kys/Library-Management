@@ -2,6 +2,15 @@
 
 @section('title', 'Add Category')
 
+@section('js')
+<script>
+    document.getElementById('categories').className += ' menu-open';
+    document.getElementById('categories_link').className += ' active';
+    document.getElementById('add_category_link').className += ' active';
+    document.getElementById('add_category_icon').className = 'far fa-dot-circle nav-icon';
+</script>
+@endsection
+
 @section('content-header')
 <div class="container-fluid">
     <div class="row mb-2">

@@ -22,6 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 })->name('index');
+Route::get('/home', [StudentController::class, 'home'])->name('home');
+Route::get('/borrow/{id}', [BookLoanController::class, 'borrow'])->name('borrow');
+Route::post('/store-borrow', [BookLoanController::class, 'storeBorrow'])->name('storeBorrow');
+Route::get('/return-borrow/{id}', [BookLoanController::class, 'returnBorrow'])->name('returnBorrow');
+
 Route::post('/login', [StudentController::class, 'login'])->name('login');
 Route::post('/register', [StudentController::class, 'register'])->name('register');
 Route::get('/logout', [StudentController::class, 'logout'])->name('logout');

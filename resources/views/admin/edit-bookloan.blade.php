@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'Edit Issued Book')
+@section('title', 'Edit Book loan')
 
 @section('content-header')
 <div class="container-fluid">
@@ -18,6 +18,15 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script>
+    document.getElementById('books_borrowed').className += ' menu-open';
+    document.getElementById('books_borrowed_link').className += ' active';
+    document.getElementById('manage_borrowed_link').className += ' active';
+    document.getElementById('manage_borrowed_icon').className = 'far fa-dot-circle nav-icon';
+</script>
 @endsection
 
 @section('content')

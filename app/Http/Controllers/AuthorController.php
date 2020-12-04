@@ -47,9 +47,14 @@ class AuthorController extends Controller
         return redirect()->back();
     }
 
-    public function manageAuthor()
+    public function manageAuthor(Request $request)
     {
-        $authors = Author::all();
+        $keyword = $request->get('keyword');
+        $query = Author::query();
+        if ($keyword) {
+            $query->where('name', 'like', "%{$keyword}%")->orWhere('id', $keyword);
+        }
+        $authors = $query->orderBy('id', 'desc')->paginate(3);
         return view('admin.manage-author', compact('authors'));
     }
 }

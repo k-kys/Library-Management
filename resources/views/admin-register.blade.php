@@ -1,9 +1,12 @@
 @extends('master')
 @section('title', 'Đăng ký Admin')
-@section('content')
-{{-- <div class="content-wrapper"> --}}
-<div class="container">
 
+@section('content')
+
+{{-- Navbar --}}
+@include('includes.navbar2')
+{{-- Content --}}
+<div class="container">
     <div class="row">
         <div class="col-md-12 ">
             <h4>ADMIN REGISTER</h4>

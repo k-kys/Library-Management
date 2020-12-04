@@ -1,7 +1,18 @@
 @extends('master')
+
 @section('title', 'Change Password')
+
+@section('js')
+<script>
+    $('#change_password').addClass('active');
+</script>
+@endsection
+
 @section('content')
 
+{{-- Navbar --}}
+@include('includes.navbar')
+{{-- Content --}}
 <div class="container">
     <div class="row">
         <div class="col-md-12">

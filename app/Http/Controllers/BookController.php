@@ -25,6 +25,8 @@ class BookController extends Controller
         $book->name = $request->get('name');
         $book->author_id = $request->get('author_id');
         $book->price = $request->get('price');
+        $book->quantity = $request->get('quantity');
+        $book->quantity_stock = $request->get('quantity');
         $book->created_at = date('Y-m-d H:i:s');
         $book->save();
         $book->categories()->attach($request->get('category_id'));
@@ -46,6 +48,9 @@ class BookController extends Controller
         $book->name = $request->get('name');
         $book->author_id = $request->get('author_id');
         $book->price = $request->get('price');
+        $quantity = $book->quantity + $request->get('add_quantity'); //$request->get('add_quantity')
+        $book->quantity = $quantity;
+        $book->quantity_stock = $book->quantity_stock + $request->get('add_quantity');
         $book->updated_at = date('Y-m-d H:i:s');
         $book->save();
         $book->categories()->sync($request->get('category_id'));
@@ -62,9 +67,14 @@ class BookController extends Controller
         return redirect()->back();
     }
 
-    public function manageBook()
+    public function manageBook(Request $request)
     {
-        $books = Book::all();
+        $keyword = $request->get('keyword');
+        $query = Book::query();
+        if ($keyword) {
+            $query->where('name', 'like', "%{$keyword}%")->orWhere('id', $keyword);
+        }
+        $books = $query->orderBy('id', 'desc')->paginate(3);
         return view('admin.manage-book', compact('books'));
     }
 }

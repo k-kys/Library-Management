@@ -20,6 +20,13 @@
 </div>
 @endsection
 
+@section('js')
+<script>
+    document.getElementById('students_link').className += ' active';
+</script>
+@endsection
+
+
 @section('content')
 <div class="container-fluid">
     {{-- Kiem tra loi - validate --}}
@@ -65,9 +72,13 @@
                                         </select> entries</label></div>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                            class="form-control form-control-sm" placeholder=""
-                                            aria-controls="example1"></label></div>
+                                <form class="form-inline" method="get" action="">
+                                    <div id="example1_filter" class="dataTables_filter"><label>Search:<input
+                                                type="search" class="form-control form-control-sm" name="keyword"
+                                                value="{{ request()->get('keyword') }}" placeholder="Keyword"
+                                                aria-controls="example1"></label></div>
+                                </form>
+                                <i style="color: silver">Search by Student name, Student ID</i>
                             </div>
                         </div>
                         <div class="row">
@@ -135,7 +146,7 @@
                                     1 to 10 of 57 entries</div>
                             </div>
                             <div class="col-sm-12 col-md-7">
-                                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                {{-- <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
                                     <ul class="pagination">
                                         <li class="paginate_button page-item previous disabled" id="example1_previous">
                                             <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0"
@@ -147,7 +158,8 @@
                                                 aria-controls="example1" data-dt-idx="7" tabindex="0"
                                                 class="page-link">Next</a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
+                                {{ $students->links() }}
                             </div>
                         </div>
                     </div>

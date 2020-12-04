@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Student;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class StudentsSeeder extends Seeder
 {
@@ -17,9 +16,10 @@ class StudentsSeeder extends Seeder
     {
         //
         $data = [
-            'name' => Str::random(10),
-            'email' => Str::random(10) . '@gmail.com',
+            'name' => 'Student1',
+            'email' => 'student1@gmail.com',
             'password' => bcrypt('123456'),
+            'created_at' => '2020-12-01',
         ];
         Student::insert($data);
     }

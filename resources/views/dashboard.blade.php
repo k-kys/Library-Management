@@ -1,7 +1,18 @@
 @extends('master')
+
 @section('title', 'Dashboard')
+
+@section('js')
+<script>
+    $('#dashboard').addClass('active');
+</script>
+@endsection
+
 @section('content')
 
+{{-- Navbar --}}
+@include('includes.navbar')
+{{-- Content --}}
 <div class="container">
     <div class="row pad-botm">
         <div class="col-md-12">

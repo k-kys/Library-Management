@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\BookLoan;
 use App\Models\Student;
 use Auth;
@@ -36,7 +37,7 @@ class StudentController extends Controller
                 // dd($status);
                 if ($status == 1) {
                     // $id = Auth::guard('students')->id();
-                    return redirect()->route('dashboard');
+                    return redirect()->route('home');
                 } else {
                     $request->session()->flash('status', 'Tài khoản của bạn đã bị khóa. Liên hệ Admin để được hỗ trợ');
                     Auth::guard('students')->logout();
@@ -112,6 +113,20 @@ class StudentController extends Controller
     {
         Auth::guard('students')->logout();
         return redirect()->route('index');
+    }
+
+    public function home(Request $request)
+    {
+        $keyword = $request->get('keyword');
+        $query = Book::query();
+        if ($keyword) {
+            $query->where('name', 'like', "%{$keyword}%");
+            $query->orWhereHas('author', function ($authorSubQuery) use ($keyword) {
+                $authorSubQuery->where('name', 'like', "%{$keyword}%");
+            });
+        }
+        $books = $query->orderBy('id', 'desc')->paginate(3);
+        return view('home', compact('books'));
     }
 
     public function dashboard()

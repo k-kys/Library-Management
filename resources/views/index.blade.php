@@ -1,9 +1,12 @@
 @extends('master')
 @section('title', 'Đăng nhập - Đăng ký')
-@section('content')
-{{-- <div class="content-wrapper"> --}}
-<div class="container">
 
+@section('content')
+
+<!-- Navbar -->
+@include('includes.navbar2')
+{{-- Content --}}
+<div class="container">
     <div class="row">
         <div class="col-md-12 ">
             <h4>STUDENT FORM</h4>
@@ -32,6 +35,7 @@
         </div>
     </div>
 
+    {{-- Form đăng nhập --}}
     <div class="row">
         <div class="col-md-6">
             <!-- Login Box -->
@@ -99,6 +103,7 @@
             <!-- /.login-box -->
         </div>
 
+        {{-- Form đăng ký --}}
         <div class="col-md-6">
             <!-- Register Box -->
             <div class="register-box">
@@ -178,5 +183,4 @@
         </div>
     </div>
 </div>
-{{-- </div> --}}
 @endsection

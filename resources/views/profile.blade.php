@@ -1,7 +1,18 @@
 @extends('master')
+
 @section('title', 'My Profile')
+
+@section('js')
+<script>
+    $('#my_profile').addClass('active');
+</script>
+@endsection
+
 @section('content')
 
+{{-- Navbar --}}
+@include('includes.navbar')
+{{-- Content --}}
 <div class="container">
     <div class="row">
         <div class="col-md-12">

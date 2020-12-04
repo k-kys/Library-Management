@@ -17,8 +17,9 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->foreignId('author_id')->references('id')->on('authors')->onDelete('cascade');
-            // $table->string('category')->nullable();
             $table->string('price')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->integer('quantity_stock')->nullable();
             $table->timestamps();
         });
     }

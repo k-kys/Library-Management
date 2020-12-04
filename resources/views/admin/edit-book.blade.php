@@ -1,12 +1,36 @@
 @extends('admin.master')
+
 @section('title', 'Edit Book')
-@section('content')
+
+@section('content-header')
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h4>Edit Book</h4>
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>Edit Book</h1>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Edit Book</li>
+            </ol>
         </div>
     </div>
+</div>
+@endsection
+
+@section('js')
+<script>
+    document.getElementById('books').className += ' menu-open';
+    document.getElementById('books_link').className += ' active';
+    document.getElementById('manage_book_link').className += ' active';
+    document.getElementById('manage_book_icon').className = 'far fa-dot-circle nav-icon';
+</script>
+@endsection
+
+@section('content')
+<div class="container-fluid">
     {{-- Kiem tra loi - validate --}}
     <div class="row">
         <div class="col-md-12">
@@ -28,8 +52,8 @@
             @endif
         </div>
     </div>
-    <div class="row">
-        <div class="row col-md-8">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Edit Book</h3>
@@ -73,6 +97,11 @@
                             <label for="">Price</label>
                             <input type="number" class="form-control" name="price" id="" value="{{ $book->price }}"
                                 placeholder="Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Add Quantity (số lượng nhập thêm)</label>
+                            <input type="number" class="form-control" name="add_quantity" id=""
+                                placeholder="Add Quantity">
                         </div>
                     </div>
                     <!-- /.card-body -->

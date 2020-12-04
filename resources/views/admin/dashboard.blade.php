@@ -20,6 +20,14 @@
 </div>
 @endsection
 
+@section('js')
+<script>
+    // document.getElementById('categories').className += ' menu-open';
+    document.getElementById('dashboard_link').className += ' active';
+    // document.getElementById('add_category').className += ' active';
+</script>
+@endsection
+
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">

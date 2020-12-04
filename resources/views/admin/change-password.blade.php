@@ -20,6 +20,13 @@
 </div>
 @endsection
 
+@section('js')
+<script>
+    document.getElementById('change_password_link').className += ' active';
+</script>
+@endsection
+
+
 @section('content')
 <div class="container-fluid">
 

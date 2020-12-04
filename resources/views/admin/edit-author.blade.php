@@ -1,12 +1,36 @@
 @extends('admin.master')
+
 @section('title', 'Edit Author')
-@section('content')
+
+@section('content-header')
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h4>Edit Author</h4>
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>Edit Author</h1>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Edit Author</li>
+            </ol>
         </div>
     </div>
+</div>
+@endsection
+
+@section('js')
+<script>
+    document.getElementById('authors').className += ' menu-open';
+    document.getElementById('authors_link').className += ' active';
+    document.getElementById('manage_author_link').className += ' active';
+    document.getElementById('manage_author_icon').className = 'far fa-dot-circle nav-icon';
+</script>
+@endsection
+
+@section('content')
+<div class="container-fluid">
     {{-- Kiem tra loi - validate --}}
     <div class="row">
         <div class="col-md-12">
@@ -28,8 +52,8 @@
             @endif
         </div>
     </div>
-    <div class="row">
-        <div class="row col-md-8">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Edit Author</h3>

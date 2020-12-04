@@ -20,6 +20,16 @@
 </div>
 @endsection
 
+@section('js')
+<script>
+    document.getElementById('books').className += ' menu-open';
+    document.getElementById('books_link').className += ' active';
+    document.getElementById('manage_book_link').className += ' active';
+    document.getElementById('manage_book_icon').className = 'far fa-dot-circle nav-icon';
+</script>
+@endsection
+
+
 @section('content')
 <div class="container-fluid">
 
@@ -66,9 +76,12 @@
                                         </select> entries</label></div>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                            class="form-control form-control-sm" placeholder=""
-                                            aria-controls="example1"></label></div>
+                                <form class="form-inline" method="get" action="">
+                                    <div id="example1_filter" class="dataTables_filter"><label>Search:<input
+                                                type="search" class="form-control form-control-sm" name="keyword"
+                                                value="{{ request()->get('keyword') }}" placeholder="name or id"
+                                                aria-controls="example1"></label></div>
+                                </form>
                             </div>
                         </div>
                         <div class="row">
@@ -96,6 +109,8 @@
                                                 colspan="1"
                                                 aria-label="Engine version: activate to sort column ascending">Price
                                             </th>
+                                            <th>Quantity</th>
+                                            <th>Quantity Stock</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                 colspan="1" aria-label="Platform(s): activate to sort column ascending">
                                                 Created_at</th>
@@ -119,6 +134,8 @@
                                                 @endforeach
                                             </td>
                                             <td>{{ $book->price }}</td>
+                                            <td>{{ $book->quantity }}</td>
+                                            <td>{{ $book->quantity_stock }}</td>
                                             <td>{{ $book->created_at }}</td>
                                             <td>{{ $book->updated_at }}</td>
                                             <td>
@@ -145,7 +162,7 @@
                                 <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing
                                     1 to 10 of 57 entries</div>
                             </div>
-                            <div class="col-sm-12 col-md-7">
+                            {{-- <div class="col-sm-12 col-md-7">
                                 <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
                                     <ul class="pagination">
                                         <li class="paginate_button page-item previous disabled" id="example1_previous">
@@ -159,7 +176,8 @@
                                                 class="page-link">Next</a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> --}}
+                            {{ $books->links() }}
                         </div>
                     </div>
                 </div>

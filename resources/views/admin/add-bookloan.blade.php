@@ -20,6 +20,16 @@
 </div>
 @endsection
 
+@section('js')
+<script>
+    document.getElementById('books_borrowed').className += ' menu-open';
+    document.getElementById('books_borrowed_link').className += ' active';
+    document.getElementById('add_borrowed_link').className += ' active';
+    document.getElementById('add_borrowed_icon').className = 'far fa-dot-circle nav-icon';
+</script>
+@endsection
+
+
 @section('content')
 <div class="container-fluid">
 

@@ -1,13 +1,47 @@
 @extends('master')
+
 @section('title', 'Book borrow')
+
+@section('js')
+<script>
+    $('#book_borrowed').addClass('active');
+</script>
+@endsection
+
 @section('content')
 
+{{-- Navbar --}}
+@include('includes.navbar')
+{{-- Content --}}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <h2>BOOK BORROWED</h2>
         </div>
     </div>
+
+    {{-- Kiem tra loi - validate --}}
+    <div class="row">
+        <div class="col-md-12">
+            @if ($errors->any())
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            @if (session('status'))
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ session('status') }}
+            </div>
+            @endif
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <table class="table table-striped table-bordered table-hover">
@@ -20,6 +54,7 @@
                         <th>Date returned</th>
                         <th>Status</th>
                         <th>Amount of fine</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +73,12 @@
                             @endif
                         </td>
                         <td>{{ $bookLoan->amount_of_fine }}</td>
+                        <td>
+                            @if ($bookLoan->status == 0)
+                            <a class="btn btn-primary"
+                                href="{{ route('returnBorrow', ['id' => $bookLoan->id]) }}">Return Book</a>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

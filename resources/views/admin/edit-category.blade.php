@@ -1,12 +1,36 @@
 @extends('admin.master')
+
 @section('title', 'Edit Category')
-@section('content')
+
+@section('content-header')
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h4>Edit Category</h4>
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>Edit Category</h1>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Edit Category</li>
+            </ol>
         </div>
     </div>
+</div>
+@endsection
+
+@section('js')
+<script>
+    document.getElementById('categories').className += ' menu-open';
+    document.getElementById('categories_link').className += ' active';
+    document.getElementById('manage_category_link').className += ' active';
+    document.getElementById('manage_category_icon').className = 'far fa-dot-circle nav-icon';
+</script>
+@endsection
+
+@section('content')
+<div class="container-fluid">
     {{-- Kiem tra loi - validate --}}
     <div class="row">
         <div class="col-md-12">
@@ -28,8 +52,9 @@
             @endif
         </div>
     </div>
-    <div class="row">
-        <div class="row col-md-8">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Edit Category</h3>

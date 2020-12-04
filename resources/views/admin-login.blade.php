@@ -1,6 +1,16 @@
 @extends('master')
+
 @section('title', 'Admin Login')
+
+@section('navbar')
+
+@endsection
+
 @section('content')
+
+<!-- Navbar -->
+@include('includes.navbar2')
+{{-- Content --}}
 <div class="container">
     <div class="row">
         <div class="col-md-12">

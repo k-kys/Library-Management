@@ -20,6 +20,16 @@
 </div>
 @endsection
 
+@section('js')
+<script>
+    document.getElementById('books_borrowed').className += ' menu-open';
+    document.getElementById('books_borrowed_link').className += ' active';
+    document.getElementById('manage_borrowed_link').className += ' active';
+    document.getElementById('manage_borrowed_icon').className = 'far fa-dot-circle nav-icon';
+</script>
+@endsection
+
+
 @section('content')
 <div class="container-fluid">
 
@@ -66,9 +76,13 @@
                                         </select> entries</label></div>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                            class="form-control form-control-sm" placeholder=""
-                                            aria-controls="example1"></label></div>
+                                <form class="form-inline" method="get" action="">
+                                    <div id="example1_filter" class="dataTables_filter"><label>Search:<input
+                                                type="search" class="form-control form-control-sm" name="keyword"
+                                                value="{{ request()->get('keyword') }}" placeholder="Keyword"
+                                                aria-controls="example1"></label></div>
+                                    <i style="color: silver">Search by Student name, Book name, Bookloan ID</i>
+                                </form>
                             </div>
                         </div>
                         <div class="row">
@@ -106,8 +120,8 @@
                                         @foreach ($bookLoans as $bookLoan)
                                         <tr role="row" class="odd">
                                             <td>{{ $bookLoan->id }}</td>
-                                            <td>{{ $bookLoan->student->name }}</td>
-                                            <td>{{ $bookLoan->book->name }}</td>
+                                            <td>{{ $bookLoan->student_name }}</td>
+                                            <td>{{ $bookLoan->book_name }}</td>
                                             <td>{{ $bookLoan->date_issued }}</td>
                                             <td>{{ $bookLoan->date_due_for_return }}</td>
                                             <td>{{ $bookLoan->date_returned }}</td>
@@ -136,7 +150,7 @@
                                     1 to 10 of 57 entries</div>
                             </div>
                             <div class="col-sm-12 col-md-7">
-                                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                {{-- <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
                                     <ul class="pagination">
                                         <li class="paginate_button page-item previous disabled" id="example1_previous">
                                             <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0"
@@ -148,7 +162,8 @@
                                                 aria-controls="example1" data-dt-idx="7" tabindex="0"
                                                 class="page-link">Next</a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
+                                {{ $bookLoans->links() }}
                             </div>
                         </div>
                     </div>

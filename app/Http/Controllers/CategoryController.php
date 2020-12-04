@@ -47,9 +47,14 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
-    public function manageCategory()
+    public function manageCategory(Request $request)
     {
-        $categories = Category::all();
+        $keyword = $request->get('keyword');
+        $query = Category::query();
+        if ($keyword) {
+            $query->where('name', 'like', "%{$keyword}%")->orWhere('id', $keyword);
+        }
+        $categories = $query->orderBy('id', 'desc')->paginate(3);
         return view('admin.manage-category', compact('categories'));
     }
 }

@@ -95,9 +95,14 @@ class AdminController extends Controller
 
 
 
-    public function manageStudent()
+    public function manageStudent(Request $request)
     {
-        $students = DB::table('students')->get();
+        $keyword = $request->get('keyword');
+        $query = DB::table('students');
+        if ($keyword) {
+            $query->where('name', 'like', "%{$keyword}%")->orWhere('id', $keyword);
+        }
+        $students = $query->orderBy('id', 'desc')->paginate(3);
         return view('admin.manage-student', compact('students'));
     }
 

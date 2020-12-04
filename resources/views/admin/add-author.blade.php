@@ -20,6 +20,16 @@
 </div>
 @endsection
 
+@section('js')
+<script>
+    document.getElementById('authors').className += ' menu-open';
+    document.getElementById('authors_link').className += ' active';
+    document.getElementById('add_author_link').className += ' active';
+    document.getElementById('add_author_icon').className = 'far fa-dot-circle nav-icon';
+</script>
+@endsection
+
+
 @section('content')
 <div class="container-fluid">
 
