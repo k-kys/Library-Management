@@ -59,8 +59,7 @@ class CategoryController extends Controller
         if ($keyword) {
             $query->where('name', 'like', "%{$keyword}%")->orWhere('id', $keyword);
         }
-        $categories = $query->orderBy('id', 'desc')->paginate(3);
-        dd($categories);
+        $categories = $query->paginate(3);
         return view('admin.manage-category', compact('categories'));
     }
 }
