@@ -60,6 +60,7 @@ class CategoryController extends Controller
             $query->where('name', 'like', "%{$keyword}%")->orWhere('id', $keyword);
         }
         $categories = $query->orderBy('id', 'desc')->paginate(3);
+        dd($categories);
         return view('admin.manage-category', compact('categories'));
     }
 }
