@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookLoanController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,18 +19,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// STUDENT
+
 Route::get('/', function () {
     return view('index');
 })->name('index');
+
+// STUDENT
 Route::get('/home', [StudentController::class, 'home'])->name('home');
 Route::get('/borrow/{id}', [BookLoanController::class, 'borrow'])->name('borrow');
 Route::post('/store-borrow', [BookLoanController::class, 'storeBorrow'])->name('storeBorrow');
 Route::get('/return-borrow/{id}', [BookLoanController::class, 'returnBorrow'])->name('returnBorrow');
 
-Route::post('/login', [StudentController::class, 'login'])->name('login');
-Route::post('/register', [StudentController::class, 'register'])->name('register');
-Route::get('/logout', [StudentController::class, 'logout'])->name('logout');
+Route::post('/login', [LoginController::class, 'studentLogin'])->name('login');
+Route::post('/register', [LoginController::class, 'studentRegister'])->name('register');
+Route::get('/logout', [LoginController::class, 'studentLogout'])->name('logout');
 Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('dashboard');
 
 Route::get('/profile', [StudentController::class, 'profile'])->name('profile');
@@ -42,12 +45,12 @@ Route::post('/forgot-password', [StudentController::class, 'forgotPassword'])->n
 
 // ADMIN
 Route::view('/admin-register', 'admin-register')->name('admin.getRegister');
-Route::post('/admin-register', [AdminController::class, 'register'])->name('admin.register');
+Route::post('/admin-register', [LoginController::class, 'adminRegister'])->name('admin.register');
 Route::view('/admin-login', 'admin-login')->name('admin.getLogin');
-Route::post('/admin-login', [AdminController::class, 'login'])->name('admin.login');
+Route::post('/admin-login', [LoginController::class, 'adminLogin'])->name('admin.login');
 
 Route::prefix('admin')->group(function () {
-    Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
+    Route::get('logout', [LoginController::class, 'adminLogout'])->name('admin.logout');
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('change-password', [AdminController::class, 'changePassword'])->name('admin.changePassword');
     Route::put('update-password', [AdminController::class, 'updatePassword'])->name('admin.updatePassword');

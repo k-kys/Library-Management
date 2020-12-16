@@ -81,7 +81,8 @@
                         </div>
                         <div class="form-group">
                             <label for="">Category</label>
-                            <select class="form-control select2" name="category_id[]" id="" multiple required>
+                            <select class="form-control select2" name="category_id[]" id="" multiple="multiple"
+                                required="required">
                                 <option value="">-- Chọn danh mục --</option>
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>

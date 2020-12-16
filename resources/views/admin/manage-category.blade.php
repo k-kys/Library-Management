@@ -84,7 +84,7 @@
                                 <form class="form-inline" method="get" action="">
                                     <div id="example1_filter" class="dataTables_filter"><label>Search:<input
                                                 type="search" class="form-control form-control-sm" name="keyword"
-                                                value="{{ request()->get('keyword') }}" placeholder="name or id"
+                                                value="{{ request()->get('keyword') }}" placeholder="Name or ID"
                                                 aria-controls="example1"></label></div>
                                 </form>
 

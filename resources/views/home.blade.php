@@ -36,24 +36,31 @@
         </div>
     </div>
 
-    <div class="row justify-content-end">
+    <div class="row justify-content-end" style="margin: 10px">
         <div class="col-md-10">
-            <form class="form-inline" method="get" action="">
-                <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"
-                            class="form-control form-control-sm" name="keyword" value="{{ request()->get('keyword') }}"
-                            placeholder="" aria-controls="example1"></label></div>
+            <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control" type="search" name="keyword" value="{{ request()->get('keyword') }}"
+                        placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
             </form>
 
         </div>
     </div>
+
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div>
-                <table style="width: 100%">
+                <table style="width: 100%; margin-bottom: 30px">
                     @foreach ($books as $book)
                     <tr>
                         <th>
-                            <h5><i>{{ $book->name }}</i>
+                            <h5><i>{{ $book->name }} &nbsp;&nbsp;</i>
                                 @foreach ($book->categories as $category)
                                 <span class="badge badge-sm badge-secondary">{{ $category->name }}</span>
                                 @endforeach
@@ -79,4 +86,5 @@
         </div>
     </div>
 </div>
+
 @endsection

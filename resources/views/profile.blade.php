@@ -13,15 +13,15 @@
 {{-- Navbar --}}
 @include('includes.navbar')
 {{-- Content --}}
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    {{-- <div class="row">
         <div class="col-md-12">
             <h2>MY PROFILE</h2>
         </div>
-    </div>
+    </div> --}}
     {{-- Kiem tra loi - validate --}}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">
             @if ($errors->any())
             <div class="alert alert-warning">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -41,49 +41,72 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-9 col-md-offset-1">
-
-            <form action="{{ route('update', ['id' => $profile->id]) }}" method="POST" role="form">
-                @csrf
-                @method('PUT')
-                {{-- <legend>My Profile</legend> --}}
-
-                <div class="form-group">
-                    <label for="">Student ID: </label> {{ $profile->id }}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">My Profile</h3>
                 </div>
+                <form action="{{ route('update', ['id' => $profile->id]) }}" method="POST" role="form"
+                    class="form-horizontal">
+                    @csrf
+                    @method('PUT')
+                    <div class="card-body">
 
-                <div class="form-group">
-                    <label for="">Register Date: </label> {{ $profile->created_at }}
-                </div>
-                {{-- neu co ngay updated --}}
-                <div class="form-group">
-                    <label for="">Last Update Date: </label> {{ $profile->updated_at }}
-                </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Student ID: </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="{{ $profile->id }}" disabled>
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <label for="">Status:</label>
-                    @if ($profile->status == 1)
-                    <span style="color: green">Active</span>
-                    @else
-                    <span style="color: red">Blocked</span>
-                    @endif
-                </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Register Date: </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="{{ $profile->created_at }}" disabled>
+                            </div>
+                        </div>
+                        {{-- neu co ngay updated --}}
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Last Update Date: </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="{{ $profile->updated_at }}" disabled>
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <label for="">Name</label>
-                    <input type="text" class="form-control" name="name" id="" value="{{ $profile->name }}"
-                        placeholder="Input field">
-                </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Status:</label>
+                            <div class="col-sm-10">
+                                @if ($profile->status == 1)
+                                <span style="color: green"><b>Active</b></span>
+                                @else
+                                <span style="color: red"><b>Blocked</b></span>
+                                @endif
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <label for="">Email</label>
-                    <input type="email" class="form-control" name="email" id="" value="{{ $profile->email }}" readonly
-                        placeholder="Input field">
-                </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Name: </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name" value="{{ $profile->name }}"
+                                    placeholder="Student Name">
+                            </div>
+                        </div>
 
-                <button type="submit" name="update" class="btn btn-primary">Update</button>
-            </form>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Email: </label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" value="{{ $profile->email }}" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="update" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+
+
 
         </div>
     </div>

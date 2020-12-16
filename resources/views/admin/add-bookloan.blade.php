@@ -35,7 +35,7 @@
 
     {{-- Kiem tra loi - validate --}}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">
             @if ($errors->any())
             <div class="alert alert-warning">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -82,7 +82,11 @@
                             <select name="book_id" id="input" class="form-control">
                                 <option value="">-- Chọn sách --</option>
                                 @foreach ($books as $book)
+                                @if ($book->quantity_stock > 0)
                                 <option value="{{ $book->id }}">{{ $book->name }}</option>
+                                @else
+                                <option disabled value="{{ $book->id }}">{{ $book->name }}</option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>

@@ -9,6 +9,10 @@ use App\Models\Category;
 
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     // BOOKS MANAGEMENT
 
     public function addBook()

@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class BookLoanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin,students');
+    }
+
     // ADMIN
 
     public function addBookLoan()
@@ -76,11 +81,13 @@ class BookLoanController extends Controller
 
     public function borrow(Request $request, $book_id)
     {
-        $student = Auth::guard('students')->user();
+
         $book = Book::find($book_id);
+        $quantityStock = $book->quantity_stock;
+        $student = Auth::guard('students')->user();
         $dateIssued = date('Y-m-d');
         $dateDueForReturn = date('Y-m-d', strtotime($dateIssued . '+ 30 day'));
-        return view('borrow', compact('dateIssued', 'dateDueForReturn', 'student', 'book'));
+        return view('borrow', compact('student', 'book', 'dateIssued', 'dateDueForReturn', 'quantityStock'));
     }
 
     public function storeBorrow(Request $request)
@@ -96,8 +103,8 @@ class BookLoanController extends Controller
         $book = Book::find($request->get('book_id'));
         $book->quantity_stock = $book->quantity_stock - 1;
         $book->save();
-        $request->session()->flash('status', 'Thêm phiếu mượn sách thành công');
-        return redirect()->route('index2');
+        $request->session()->flash('status', 'Bạn đã mượn sách thành công');
+        return redirect()->route('home');
     }
 
     public function returnBorrow(Request $request, $id)

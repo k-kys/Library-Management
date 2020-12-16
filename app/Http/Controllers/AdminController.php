@@ -12,77 +12,81 @@ use Validator;
 
 class AdminController extends Controller
 {
-
-    public function login(Request $request)
+    public function __construct()
     {
-        # validate
-        $rule = [
-            'email' => 'required',
-            'password' => 'required|min:6',
-        ];
-        $message = [
-            'email.required' => 'Email không được để trống',
-            'password.required' => 'Mật khẩu không được để trống',
-            'password.min' => 'Mật khẩu ít nhất 6 ký tự',
-        ];
-        $validator = Validator::make($request->all(), $rule, $message);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        } else {
-            $email = $request->get('email');
-            $password = $request->get('password');
-            if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password])) {
-                // $id = Auth::guard('admin')->id();
-                return redirect()->route('admin.dashboard');
-            }
-            $errors = new MessageBag(['password' => ['Email hoặc mật khẩu không chính xác']]);
-            return redirect()->back()->withErrors($errors)->withInput();
-        }
+        $this->middleware('auth:admin');
     }
 
-    public function register(Request $request)
-    {
-        # validate
-        $rule = [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|min:6',
-        ];
-        $message = [
-            'name.required' => 'Tên không được để trống',
-            'email.required' => 'Email không được đế trống',
-            'password.required' => 'Mật khẩu không được để trống',
-            'password.min' => 'Mật khẩu ít nhất 6 ký tự',
-        ];
-        $validator = Validator::make($request->all(), $rule, $message);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-        $checkMail = Admin::select('email')->where('email', $request->get('email'))->first();
-        if (!$checkMail) {
-            # check pass = re_pass
-            $password = $request->get('password');
-            $rePassword = $request->get('re_password');
-            if ($password != $rePassword) {
-                $errors = new MessageBag(['re_password' => ['Nhập lại mật khẩu không chính xác']]);
-                return redirect()->back()->withErrors($errors)->withInput();
-            }
-            // them vao bảng admin
-            $admin = new Admin();
-            $admin->name = $request->get('name');
-            $admin->email = $request->get('email');
-            $admin->password = bcrypt($password);
-            $admin->save();
-            $request->session()->flash('status', 'Đăng ký tài khoản Admin thành công');
-            return redirect()->route('admin.getRegister');
-        }
-    }
+    // public function login(Request $request)
+    // {
+    //     # validate
+    //     $rule = [
+    //         'email' => 'required',
+    //         'password' => 'required|min:6',
+    //     ];
+    //     $message = [
+    //         'email.required' => 'Email không được để trống',
+    //         'password.required' => 'Mật khẩu không được để trống',
+    //         'password.min' => 'Mật khẩu ít nhất 6 ký tự',
+    //     ];
+    //     $validator = Validator::make($request->all(), $rule, $message);
+    //     if ($validator->fails()) {
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //     } else {
+    //         $email = $request->get('email');
+    //         $password = $request->get('password');
+    //         if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password])) {
+    //             // $id = Auth::guard('admin')->id();
+    //             return redirect()->route('admin.dashboard');
+    //         }
+    //         $errors = new MessageBag(['password' => ['Email hoặc mật khẩu không chính xác']]);
+    //         return redirect()->back()->withErrors($errors)->withInput();
+    //     }
+    // }
 
-    public function logout()
-    {
-        Auth::guard('admin')->logout();
-        return redirect()->route('index');
-    }
+    // public function register(Request $request)
+    // {
+    //     # validate
+    //     $rule = [
+    //         'name' => 'required',
+    //         'email' => 'required',
+    //         'password' => 'required|min:6',
+    //     ];
+    //     $message = [
+    //         'name.required' => 'Tên không được để trống',
+    //         'email.required' => 'Email không được đế trống',
+    //         'password.required' => 'Mật khẩu không được để trống',
+    //         'password.min' => 'Mật khẩu ít nhất 6 ký tự',
+    //     ];
+    //     $validator = Validator::make($request->all(), $rule, $message);
+    //     if ($validator->fails()) {
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //     }
+    //     $checkMail = Admin::select('email')->where('email', $request->get('email'))->first();
+    //     if (!$checkMail) {
+    //         # check pass = re_pass
+    //         $password = $request->get('password');
+    //         $rePassword = $request->get('re_password');
+    //         if ($password != $rePassword) {
+    //             $errors = new MessageBag(['re_password' => ['Nhập lại mật khẩu không chính xác']]);
+    //             return redirect()->back()->withErrors($errors)->withInput();
+    //         }
+    //         // them vao bảng admin
+    //         $admin = new Admin();
+    //         $admin->name = $request->get('name');
+    //         $admin->email = $request->get('email');
+    //         $admin->password = bcrypt($password);
+    //         $admin->save();
+    //         $request->session()->flash('status', 'Đăng ký tài khoản Admin thành công');
+    //         return redirect()->route('admin.getRegister');
+    //     }
+    // }
+
+    // public function logout()
+    // {
+    //     Auth::guard('admin')->logout();
+    //     return redirect()->route('index');
+    // }
 
     public function dashboard()
     {

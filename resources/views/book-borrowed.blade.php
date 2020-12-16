@@ -85,6 +85,11 @@
             </table>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{ $bookLoans->links() }}
+        </div>
+    </div>
 </div>
 
 @endsection

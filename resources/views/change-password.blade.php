@@ -13,16 +13,11 @@
 {{-- Navbar --}}
 @include('includes.navbar')
 {{-- Content --}}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>CHANGE PASSWORD</h2>
-        </div>
-    </div>
+<div class="container-fluid">
 
     {{-- Kiem tra loi - validate --}}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">
             @if ($errors->any())
             <div class="alert alert-warning">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -42,30 +37,41 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-            <form action="{{ route('updatePassword') }}" method="POST" role="form">
-                @method('PUT')
-                @csrf
-                {{-- <legend>Change password</legend> --}}
-
-                <div class="form-group">
-                    <label for="">Current Password</label>
-                    <input type="password" class="form-control" name="password" id="" placeholder="Input field">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Change password</h3>
                 </div>
+                <form action="{{ route('updatePassword') }}" method="POST" role="form">
+                    @method('PUT')
+                    @csrf
+                    <div class="card-body">
 
-                <div class="form-group">
-                    <label for="">New Password</label>
-                    <input type="password" class="form-control" name="new_password" id="" placeholder="Input field">
-                </div>
+                        <div class="form-group">
+                            <label for="">Current Password</label>
+                            <input type="password" class="form-control" name="password" id=""
+                                placeholder="Current password">
+                        </div>
 
-                <div class="form-group">
-                    <label for="">Confirm New Password</label>
-                    <input type="password" class="form-control" name="re_password" id="" placeholder="Input field">
-                </div>
+                        <div class="form-group">
+                            <label for="">New Password</label>
+                            <input type="password" class="form-control" name="new_password" id=""
+                                placeholder="New password">
+                        </div>
 
-                <button type="submit" name="change" class="btn btn-primary">Change Password</button>
-            </form>
+                        <div class="form-group">
+                            <label for="">Confirm New Password</label>
+                            <input type="password" class="form-control" name="re_password" id=""
+                                placeholder="New password">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="change" class="btn btn-primary">Change Password</button>
+                    </div>
+                </form>
+            </div>
+
 
         </div>
     </div>

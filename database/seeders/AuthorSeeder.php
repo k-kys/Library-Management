@@ -16,8 +16,9 @@ class AuthorSeeder extends Seeder
     {
         //
         $data = [
-            'name' => 'Fujio Fujiko',
+            'name' => 'Hồ Chí Minh',
             'created_at' => '2020-12-01',
+            'updated_at' => '2020-12-01',
         ];
         Author::insert($data);
     }

@@ -9,8 +9,8 @@
     <link rel="icon" href="{{ asset('icon-hpc.png') }}">
 
     {{-- link của select2 --}}
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <link href="{{ asset('') }}select2-4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="{{ asset('') }}select2-4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('adminlte-v3/plugins/fontawesome-free/css/all.min.css') }}">
@@ -21,6 +21,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('adminlte-v3') }}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 </head>
 
 <body class="sidebar-mini hold-transition layout-fixed" style="height: auto;">
@@ -48,11 +49,6 @@
 
     <!-- jQuery -->
     <script src="{{ asset('adminlte-v3/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="{{ asset('adminlte-v3/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('adminlte-v3/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
@@ -70,7 +66,7 @@
     </script>
     <script>
         $(document).ready(function () {
-            $('.select2').select2()
+            $('.select2').select2();
         });
     </script>
 </body>

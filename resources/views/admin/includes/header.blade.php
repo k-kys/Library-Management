@@ -5,7 +5,8 @@
 
                 <!-- brand -->
                 <a class="navbar-brand" href="#">
-                    <img src="{{ url('/logo-hpc-9-3-1.png') }}" alt="">
+                    <img src="{{ url('/logo-hpc-9-3-1.png') }}" alt=""
+                        style="width: 100%; height: auto; display: block;">
                 </a>
 
             </nav>

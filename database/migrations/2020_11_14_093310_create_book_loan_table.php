@@ -22,6 +22,7 @@ class CreateBookLoanTable extends Migration
             $table->date('date_returned')->nullable();
             $table->integer('status')->default(0);
             $table->float('amount_of_fine')->nullable();
+            $table->timestamps();
         });
     }
 

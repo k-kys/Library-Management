@@ -20,6 +20,7 @@ class StudentsSeeder extends Seeder
             'email' => 'student1@gmail.com',
             'password' => bcrypt('123456'),
             'created_at' => '2020-12-01',
+            'updated_at' => '2020-12-01',
         ];
         Student::insert($data);
     }

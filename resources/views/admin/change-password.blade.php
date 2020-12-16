@@ -23,6 +23,9 @@
 @section('js')
 <script>
     document.getElementById('change_password_link').className += ' active';
+    // $(document).ready(function() {
+    //     $('#change_password_link').addClass('active');
+    // });
 </script>
 @endsection
 

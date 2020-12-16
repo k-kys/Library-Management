@@ -16,8 +16,9 @@ class CategorySeeder extends Seeder
     {
         //
         $data = [
-            'name' => 'Truyện tranh',
+            'name' => 'Thơ',
             'created_at' => '2020-12-01',
+            'updated_at' => '2020-12-01',
         ];
         Category::insert($data);
     }

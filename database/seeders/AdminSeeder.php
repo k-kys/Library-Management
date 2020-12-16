@@ -21,6 +21,7 @@ class AdminSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('123456'),
                 'created_at' => '2020-12-01',
+                'updated_at' => '2020-12-01',
             ],
         ];
         Admin::insert($data);

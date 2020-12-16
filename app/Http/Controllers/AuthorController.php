@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 class AuthorController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function addAuthor()
     {
         return view('admin.add-author');

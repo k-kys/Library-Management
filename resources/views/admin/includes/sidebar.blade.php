@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-orange elevation-4">
+<aside class="main-sidebar sidebar-dark-orange elevation-4 sidebar-focused">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
         <img src="#" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -41,7 +41,7 @@
                 </li>
                 <li id="categories" class="nav-item has-treeview">
                     <a id="categories_link" href="#" class="nav-link">
-                        <i class="nav-icon fas fa-book-reader"></i>
+                        <i class="nav-icon fas fa-list-alt"></i>
                         <p>
                             Categories
                             <i class="right fas fa-angle-left"></i>
@@ -66,7 +66,7 @@
                 </li>
                 <li id="authors" class="nav-item has-treeview">
                     <a id="authors_link" href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-book-reader"></i>
+                        <i class="nav-icon fas fa-user-alt"></i>
                         <p>
                             Authors
                             <i class="right fas fa-angle-left" aria-hidden="true"></i>
@@ -91,7 +91,7 @@
                 </li>
                 <li id="books" class="nav-item has-treeview">
                     <a id="books_link" href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-book-reader"></i>
+                        <i class="nav-icon fas fa-book"></i>
                         <p>
                             Books
                             <i class="right fas fa-angle-left" aria-hidden="true"></i>
@@ -116,7 +116,7 @@
                 </li>
                 <li id="books_borrowed" class="nav-item has-treeview">
                     <a id="books_borrowed_link" href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-book-reader"></i>
+                        <i class="nav-icon fas fa-book-open"></i>
                         <p>
                             Books Borrowed
                             <i class="right fas fa-angle-left" aria-hidden="true"></i>
@@ -141,7 +141,7 @@
                 </li>
                 <li class="nav-item">
                     <a id="students_link" href="{{ route('admin.manageStudent') }}" class="nav-link ">
-                        <i class="nav-icon fas fa-book"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             Students Manager
                         </p>
@@ -149,7 +149,7 @@
                 </li>
                 <li class="nav-item">
                     <a id="change_password_link" href="{{ route('admin.changePassword') }}" class="nav-link ">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fas fa-key"></i>
                         <p>
                             Change Password
                         </p>

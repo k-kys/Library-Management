@@ -20,6 +20,8 @@ class BookLoanSeeder extends Seeder
             'book_id' => 1,
             'date_issued' => '2020-12-01',
             'date_due_for_return' => '2020-12-08',
+            'created_at' => '2020-12-01',
+            'updated_at' => '2020-12-01',
         ];
         BookLoan::insert($data);
     }
