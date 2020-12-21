@@ -13,6 +13,7 @@ class BookController extends Controller
     {
         $this->middleware('auth:admin');
     }
+
     // BOOKS MANAGEMENT
 
     public function addBook()
@@ -76,7 +77,7 @@ class BookController extends Controller
         $keyword = $request->get('keyword');
         $query = Book::query();
         if ($keyword) {
-            $query->where('name', 'like', "%{$keyword}%")->orWhere('id', $keyword);
+            $query->where('name', '=', "%{$keyword}%")->orWhere('id', $keyword);
         }
         $books = $query->orderBy('id', 'desc')->paginate(3);
         return view('admin.manage-book', compact('books'));
