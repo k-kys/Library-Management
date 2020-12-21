@@ -77,9 +77,10 @@ class BookController extends Controller
         $keyword = $request->get('keyword');
         $query = Book::query()->select('*');
         if ($keyword) {
-            $query->where('name', 'like', "%{$keyword}%");
             if (is_int($keyword)) {
-                $query->orWhere('id', $keyword);
+                $query->Where('id', $keyword);
+            } else {
+                $query->where('name', 'like', "%{$keyword}%");
             }
         }
         $books = $query->orderBy('id', 'desc')->paginate(3);
