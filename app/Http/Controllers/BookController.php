@@ -75,9 +75,9 @@ class BookController extends Controller
     public function manageBook(Request $request)
     {
         $keyword = $request->get('keyword');
-        $query = Book::query();
+        $query = Book::query()->select('*');
         if ($keyword) {
-            $query->where('name', 'like', "'%".$keyword."%'")->orWhere('id', $keyword);
+            $query->where('name', 'like', "'%(".$keyword.")%'")->orWhere('id', $keyword);
         }
         $books = $query->orderBy('id', 'desc')->paginate(3);
         return view('admin.manage-book', compact('books'));
