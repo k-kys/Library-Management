@@ -109,6 +109,7 @@
             <div class="register-box">
                 <div class="card">
                     <div class="card-body register-card-body">
+                        <legend class="" style="text-align: center">Register</legend>
                         <p class="login-box-msg">Register a new membership</p>
 
                         <form action="{{ route('register') }}" method="post">

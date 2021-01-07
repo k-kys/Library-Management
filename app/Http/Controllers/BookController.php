@@ -77,11 +77,7 @@ class BookController extends Controller
         $keyword = $request->get('keyword');
         $query = Book::query()->select('*');
         if ($keyword) {
-            if (is_int($keyword)) {
-                $query->Where('id', $keyword);
-            } else {
-                $query->where('name', 'like', "%{$keyword}%");
-            }
+            $query->where('name', 'like', "%{$keyword}%")->orWhere('id', $keyword);
         }
         $books = $query->orderBy('id', 'desc')->paginate(3);
         return view('admin.manage-book', compact('books'));
